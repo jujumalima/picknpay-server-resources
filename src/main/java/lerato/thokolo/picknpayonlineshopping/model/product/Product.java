@@ -7,12 +7,12 @@ package lerato.thokolo.picknpayonlineshopping.model.product;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import lerato.thokolo.picknpayonlineshopping.model.category.Category;
 import lerato.thokolo.picknpayonlineshopping.model.order.Order;
@@ -34,7 +34,7 @@ public class Product implements Serializable {
     private double unitPrice;
     private String image;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Category category;
 
     public Product() {
