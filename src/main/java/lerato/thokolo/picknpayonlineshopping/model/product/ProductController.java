@@ -37,6 +37,13 @@ public class ProductController {
 
         return productService.getByCategory(categoryID);
     }
+    
+    @RequestMapping(value = "/all-products-by-supplier-id/{supplierID}", method = RequestMethod.GET)
+    public List<Product> getAllBySupplierID(@PathVariable int supplierID) {
+
+        return productService.getBySupplierID(supplierID);
+    }
+
 
     @RequestMapping(value = "/save-product", method = RequestMethod.POST)
     public String saveProduct(@RequestBody Product product) {

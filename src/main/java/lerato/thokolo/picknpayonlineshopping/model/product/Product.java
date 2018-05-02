@@ -13,9 +13,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import lerato.thokolo.picknpayonlineshopping.model.category.Category;
 import lerato.thokolo.picknpayonlineshopping.model.order.Order;
+import lerato.thokolo.picknpayonlineshopping.model.supplier.Supplier;
 
 /**
  *
@@ -31,11 +33,17 @@ public class Product implements Serializable {
     private String name;
     private boolean purchased;
     private int quantity;
+    private int minimumQuantity;
+    private int badgeQuantity;
     private double unitPrice;
     private String image;
 
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Category category;
+    
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "supplier_id")
+    private Supplier supplier;
 
     public Product() {
     }
@@ -54,6 +62,30 @@ public class Product implements Serializable {
         return quantity;
     }
 
+    public int getMinimumQuantity() {
+        return minimumQuantity;
+    }
+
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
+    }
+    
+    public void setMinimumQuantity(int minimumQuantity) {
+        this.minimumQuantity = minimumQuantity;
+    }
+
+    public int getBadgeQuantity() {
+        return badgeQuantity;
+    }
+
+    public void setBadgeQuantity(int badgeQuantity) {
+        this.badgeQuantity = badgeQuantity;
+    }
+    
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }

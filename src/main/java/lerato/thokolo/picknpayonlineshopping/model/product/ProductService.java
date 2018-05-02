@@ -70,6 +70,22 @@ public class ProductService  {
        return pts;
     }
     
+     public ArrayList<Product> getBySupplierID(int supplierID){
+    
+        List<Product> products = this.getAllProducts();
+        
+        ArrayList<Product> pts = new ArrayList<>();
+        
+        if(!products.isEmpty()){
+        
+            products.stream().filter((product) -> (product.getSupplier().getUserID() == supplierID)).forEachOrdered((product) -> {
+                pts.add(product);
+            });
+        }
+        
+       return pts;
+    }
+    
     /*
     public ArrayList<Product> byUserOrder(String userName){
     
