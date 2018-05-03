@@ -5,7 +5,7 @@
  */
 package lerato.thokolo.picknpayonlineshopping.model.order;
 
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,6 +50,27 @@ public class OrderService {
         }
         
         return orderRepository.save(order);
+    }
+    
+    public List<Order> getCustomerOrders(int customerID){
+    
+        List<Order> orders = this.getOrders();
+        List<Order> customerOrders = new ArrayList<>();
+        
+        if(!orders.isEmpty()){
+        
+            for (int i = 0; i < orders.size(); i++) {
+                
+                if(orders.get(i).getUserID() == customerID){
+                
+                    customerOrders.add(orders.get(i));
+                }
+            }
+            
+        }
+        
+        return customerOrders;
+        
     }
 
     /*

@@ -54,6 +54,13 @@ public class OrderController {
         return orderService.updateOrder(order);
     }
 
+    @RequestMapping(value = "/customer-orders/{customerID}", method = RequestMethod.GET)
+    public List<Order> customerOrders(@PathVariable int customerID) {
+
+        return this.orderService.getCustomerOrders(customerID);
+
+    }
+
     /*
     @RequestMapping(value = "/user-order-by-email/{email}", method = RequestMethod.DELETE)
     public Order getOrderByEmail(@PathVariable String email){

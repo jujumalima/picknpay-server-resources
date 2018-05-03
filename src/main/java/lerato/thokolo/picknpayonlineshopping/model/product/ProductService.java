@@ -7,7 +7,6 @@ package lerato.thokolo.picknpayonlineshopping.model.product;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -72,15 +71,19 @@ public class ProductService  {
     
      public ArrayList<Product> getBySupplierID(int supplierID){
     
-        List<Product> products = this.getAllProducts();
+        List<Product> products = getAllProducts();
         
         ArrayList<Product> pts = new ArrayList<>();
         
         if(!products.isEmpty()){
-        
-            products.stream().filter((product) -> (product.getSupplier().getUserID() == supplierID)).forEachOrdered((product) -> {
-                pts.add(product);
-            });
+            for (int i = 0; i < products.size(); i++) {
+                
+                if( products.get(i).getSupplier().getUserID() == supplierID){
+                
+                    pts.add(products.get(i));
+                }
+            }
+        } else {
         }
         
        return pts;
